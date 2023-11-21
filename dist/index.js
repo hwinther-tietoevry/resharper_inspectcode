@@ -46,7 +46,7 @@ class Installer {
     install(version) {
         return __awaiter(this, void 0, void 0, function* () {
             // The 'update' command will install JetBrains.ReSharper.GlobalTools if it is not already installed.
-            let command = `dotnet tool update --global JetBrains.ReSharper.GlobalTools`;
+            let command = `dotnet tool update --global JetBrains.ReSharper.GlobalTools --version 2023.3.0-eap08`; // TODO: remove version once these changes are out of eap
             if (version !== '') {
                 command += ` --version ${version}`;
             }
@@ -138,7 +138,7 @@ function run() {
             let command = `jb inspectcode --output=${outputPath} --absolute-paths ${solutionPath}`;
             const include = core.getInput('include');
             if (include) {
-                command += ` --include=${include.trim().replace(/[\r\n]+/g, ';')}`;
+                command += ` --include="${include.trim().replace(/[\r\n]+/g, ';')}"`;
             }
             const exclude = (_b = core.getInput('exclude')) !== null && _b !== void 0 ? _b : '';
             if (exclude !== '') {
